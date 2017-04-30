@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="angular.min.js"></script>
+</head>
+
+<body>
+    <div ng-app="body">
+        <div ng-controller="firstController">
+            {{date}}
+
+            <input type="text" ng-model="name">
+            {{9999|currency:'^'}}
+        </div>
+    </div>
+</body>
+
+</html>
+
+<script>
+    var app = angular.module("body", ["ng"]);
+    app.controller("firstController", ($scope) => {
+        $scope.date = new Date();
+        setInterval(() => {
+            $scope.$apply(() => {
+                $scope.date = new Date();
+            }
+            )
+        }, 1000)
+
+
+        $scope.updated = 0;
+        $scope.$watch("name", function (o, n) {
+
+            if (o != n) {
+                $scope.updated++;
+                
+            }
+            if($scope.updated>5)
+            {
+                $scope.name=">5";
+            }
+
+        })
+
+    })
+
+
+
+</script>

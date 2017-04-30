@@ -1,0 +1,140 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+   
+    <link href="../bootstraps/dist/css/bootstrap.css" rel="stylesheet" />
+    <script src="../jquery/jquery-3.2.0.min.js"></script>
+    <script src="../bootstraps/dist/js/bootstrap.js"></script>
+    <script src="angular.min.js"></script>
+</head>
+<body ng-app>
+    <div class="container">
+        <div class="jumbotron">
+            <h1>Hello AngulaJS</h1>
+            <p class="text-right">This is new start</p>
+        </div>
+        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+            <!--第1行-->
+            <div class="panel panel-success">
+                <div class="panel-heading" role="tab" id="heading1">
+                    <h4 class="panel-title">
+                        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            表达式容器  大括号
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                    <div class="panel-body">
+                        <p>{{1==2?3:4}}</p>
+                        <p>{{22>22}}</p>
+                        <p>{{"le"+"e"}}</p>
+                    </div>
+                </div>
+            </div>
+            <!--第2行-->
+            <div class="panel panel-success">
+                <div class="panel-heading" role="tab" id="heading2">
+                    <h4 class="panel-title">
+                        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse2" aria-expanded="true" aria-controls="collapse2">
+                            ng-init
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapse2" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="collapse2">
+                    <div class="panel-body">
+                        <span ng-init="name='lixingchen'">
+                            {{name}}
+                        </span>
+                        <span ng-init="car={name:'bmw ',price:50}"></span>
+                        {{car.price}}
+                        <span ng-init="list=[50,1,2]"></span>
+                        {{list[0]}}
+                    </div>
+                </div>
+            </div>
+
+            <!--第3行-->
+            <div class="panel panel-success">
+                <div class="panel-heading" role="tab" id="heading3">
+                    <h4 class="panel-title">
+                        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse3" aria-expanded="true" aria-controls="collapse3">
+                            ng-bind
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapse3" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="collapse3">
+                    <div class="panel-body">
+                        <p ng-bind="name"></p>
+                        <input type="text" name="name" value="" ng-init="name='lixingchen'" />
+                    </div>
+                </div>
+            </div>
+
+            <!--第四行-->
+            <div class="panel panel-success">
+                <div class="panel-heading" role="tab" id="heading4">
+                    <h4 class="panel-title">
+                        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse4" aria-expanded="true" aria-controls="collapse4">
+                            ng-repeater
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapse4" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="collapse4">
+                    <div class="panel-body">
+                        <ul>
+                            <li ng-repeat="temp in  list ">
+                                {{temp}}
+                            </li>
+                        </ul>
+                        <div>
+                            <a ng-repeat="(k,v) in  car ">{{k}}</a>
+                            <a ng-repeat="(k,v) in  car ">{{v}}</a>
+
+                            <div>
+                                $index , $first,  $middle , $last , $even ,$odd
+                            </div>
+                        </div>
+
+                        <table ng-init="tb=[{name:'lee',age:20},{name:'wok',age:30},{name:'zb',age:500}]">
+                            <tr ng-repeat="obj in tb">
+                                <td>{{obj.name}}</td>
+                                <td>{{obj.age}}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!--第5行-->
+        <div class="panel panel-success">
+            <div class="panel-heading" role="tab" id="heading5">
+                <h4 class="panel-title">
+                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse5" aria-expanded="true" aria-controls="collapse5">
+                        ng-if
+                    </a>
+                </h4>
+            </div>
+            <div id="collapse5" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="collapse5">
+                <div class="panel-body" ng-init="isok=true">
+                       <div ng-if="isok" ng-init="isnotok=false">
+                           如果是true 就显示  如果 false 就不显示
+                       </div>
+                </div>
+            </div>
+        </div>
+
+        <div ng-show="isnotok"> is show</div>
+
+    </div>
+    
+  
+
+    
+</body>
+</html>
+<script>
+     
+</script>

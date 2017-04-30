@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="dist/css/bootstrap.css" rel="stylesheet" />
+    <script src="../jquery/jquery-3.2.0.min.js"></script>
+    <script src="dist/js/bootstrap.js"></script>
+</head>
+<body>
+    <div class="dropdown">
+        <a data-toggle="dropdown" href="#">产品列表</a>
+        <ul class="dropdown-menu" data-toggle="toggle">
+            <li><a href="#">content</a></li>
+            <li><a href="#">洗衣机</a></li>
+            <li><a href="#">content</a></li>
+            <li><a href="#">content</a></li>
+        </ul>
+    </div>
+
+    <div class="alert alert-danger">
+        <span class="close" data-dismiss="alert">xxx</span>
+    </div>
+
+    <div class="container">
+        <div>
+            <a href="#model-login" data-toggle="modal"  class="btn btn-success">登陆</a>
+            <button data-target="#model-register"  class="btn btn-primary">注册</button>
+        </div>
+    </div>
+    <div id="model-login" class="modal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">用户登陆
+                    <span class="close" data-dismiss="modal">&times;</span>
+                </div>
+                <div class="modal-body">正文</div>
+                <div class="modal-footer">
+                    <button class="btn">确定</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="model-register" class="modal">模态2</div>
+</body>
+</html>
+<script>
+    $("#link1").dropdown();
+</script>

@@ -1,0 +1,304 @@
+﻿<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>理财宝</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="js/vendor/OwlCarousel2-2.2.1/dist/assets/owl.carousel.min.css" rel="stylesheet" />
+    <link href="js/vendor/OwlCarousel2-2.2.1/dist/assets/owl.theme.default.min.css" rel="stylesheet" />
+    <script src="js/vendor/OwlCarousel2-2.2.1/docs/assets/vendors/jquery.min.js"></script>
+    <link href="css/bootstrap.css" rel="stylesheet" />
+    <script src="js/bootstrap.js"></script>
+    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico" media="screen" />
+    <link href="css/index.css" rel="stylesheet" />
+    <script src="js/angular.min.js"></script>
+</head>
+
+<body>
+    <div class="container" ng-app="body" ng-controller="bodyController">
+        <div id="header" class="row overFlow">
+            <div class="col-lg-8 col-md-4"><span id="phoneNumber">理财热线: 400-888-8888</span></div>
+            <div class="col-lg-4  col-md-8">
+                <ul class="list-inline right">
+                    <li><a href="#">登陆</a></li>
+                    <li><a href="#">快速注册</a></li>
+                    <li><a href="#">关于</a></li>
+                    <li><a href="#">帮助</a></li>
+                    <li><a href="#">APP下载</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="header2" class="row overFlow">
+            <div class="col-lg-5">
+                <img src="img/logo@2x.png" />
+            </div>
+            <div class="col-lg-7">
+                <ul class="list-inline right">
+                    <li><a href="#">首页</a></li>
+                    <li><a href="#">理财频道</a></li>
+                    <li><a href="#">投资频道</a></li>
+                    <li><a href="#">新手专区</a></li>
+                    <li><a href="#">安全保障</a></li>
+                </ul>
+            </div>
+        </div>
+        <div id="header3" class="row overFlow">
+
+            <div class="col-lg-4 text-center">
+                平台累计成交金额 <span>1 9 8 8 8</span> 万元
+            </div>
+            <div class="col-lg-4 text-center">过去七日成交金额 <span>1 8 8 8</span> 万元</div>
+            <div class="col-lg-4 text-center">
+                查看平台运营报告
+            </div>
+        </div>
+        <div id="banner" class="row">
+            <div class="owl-carousel owl-theme">
+                <div class="item">
+                    <picture>
+                        <source srcset="img/ad001-l.png" media="(min-width:1600px)" />
+                        <source srcset="img/ad001-m.png" media="(min-width:800px)" />
+                        <img src="img/ad001.png" alt="Alternate Text" />
+                    </picture>
+                </div>
+                <div class="item">
+                    <picture>
+                        <source srcset="img/ad002-l.png" media="(min-width:1600px)" />
+                        <source srcset="img/ad002-m.png" media="(min-width:800px)" />
+                        <img src="img/ad002.png" alt="Alternate Text" />
+                    </picture>
+                </div>
+                <div class="item">
+                    <picture>
+                        <source srcset="img/ad003-l.png" media="(min-width:1600px)" />
+                        <source srcset="img/ad003-l.png" media="(min-width:1600px)" />
+                        <source srcset="img/ad003-m.png" media="(min-width:800px)" />
+                        <img src="img/ad003.png" alt="Alternate Text" />
+                    </picture>
+                </div>
+
+            </div>
+        </div>
+        <div id="safe" class="row">
+            <div class="col-lg-4" name="safeblock" ng-repeat="(k,v) in safe">
+
+                <span class="disInlineBlock  " name="safe">{{v.name}}</span>
+                <div class="disInlineBlock" name="safeArtice">
+                    <p ng-repeat="(k2,v2) in v.values">{{v2.Record}}</p>
+
+                </div>
+            </div>
+
+        </div>
+
+        <div id="adv" class="row grayBorder marginTop10 paddingLeftRightPercent2">
+            <span>最新公告: 2017-12-31</span>
+            <span>元旦期间业务受理及其值班公告元旦期间业务受理及其值班公告元旦期间业务受理及其值班公告元旦期间业务受理及其值班公告....</span>
+            <span class="pull-right ">更多公告</span>
+        </div>
+        <div id="body">
+            <div id="body1" class="grayBorder row marginTop10 marginLeft0 backgroudCyan marginRight0 borderNoRight">
+                <div class="col-lg-2 paddingTop15 text-center">
+                    <p class="bold">固定期限产品</p>
+                    <p><em>甄选优质基金</em></p>
+                    <p><em>省时实力</em></p>
+                    <p><em>坐等收益</em></p>
+                </div>
+                <div class="col-lg-10 paddingRight0">
+                    <table class="table table-bordered backgroundWhite marginBottom0  borderNoTop borderNoBottom" name="borderClear">
+                        <tr ng-repeat="(key,val) in table">
+                            <td class="text-center tdMonth">
+                                <span class="month">
+                                    {{val.month}}
+                                </span>
+                                <span>
+                                    {{val.monthKey}}
+                                </span>
+                            </td>
+                            <td>
+
+                                <div class="text-center bold moneyUnit">约定年化收益率:</div>
+                                <div class="text-center">
+                                    <span span class="money">{{val.rate}}</span>
+                                    <span class="moneyUnit">起</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="text-center bold moneyUnit">总成交金额:</div>
+                                <div class="text-center">
+                                    <span class="money">{{val.total}}</span>
+                                    <span class="moneyUnit">万元</span>
+                                </div>
+
+                            </td>
+                            <td class="paddingTop20"><button class="btn btn btn-warning orangeBtn center-block">购买</button></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <hr />
+            <div id="body2" class="grayBorder row marginTop10 marginLeft0 backgroudCyan marginRight0 borderNoRight">
+                <div class="col-lg-2 paddingTop15 text-center">
+                    <p class="bold">债权/散标产品</p>
+                    <p><em>自主投资</em></p>
+                    <p><em>期限灵活</em></p>
+                </div>
+                <div class="col-lg-10 paddingRight0">
+                    <table class="table table-bordered backgroundWhite marginBottom0  borderNoTop borderNoBottom" name="borderClear">
+                        <tr ng-repeat="(key,val) in table2">
+                            <td class="text-center tdMonth">
+                                <div>
+                                    <span class="month">
+                                        {{val.month}}
+                                    </span>
+                                    <span>
+                                        {{val.monthKey}}
+                                    </span>
+                                </div>
+                                <div>
+                                    <span>{{val.monthNotice}}</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="text-center bold moneyUnit">约定年化收益率:</div>
+                                <div class="text-center">
+                                    <span span class="money">{{val.rate}}</span>
+                                    <span class="moneyUnit">起</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="text-center bold moneyUnit">金额:</div>
+                                <div class="text-center">
+                                    <span class="money">{{val.total}}</span>
+                                    <span class="moneyUnit">元</span>
+                                </div>
+                            </td>
+                            <td class="paddingTop20"><button class="btn btn btn-warning orangeBtn center-block ">{{val.button}}</button></td>
+                        </tr>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+
+        <div id="contact" class="row grayBorder backgroundWhite">
+            <div class="col-lg-2 col-md-3 ">
+                <img src="img/logo@1x.png" id="footerlicaiIcon" alt="Alternate Text" />
+            </div>
+            <div class="col-lg-10 col-md-9" >
+                <div class="row">
+                    <div class="col-lg-2 col-md-2 ">
+                        <ul class="list-unstyled">
+                            <li><a href="#">关于我们</a></li>
+                            <li><a href="#">公司介绍</a></li>
+                            <li><a href="#">业务模式</a></li>
+                            <li><a href="#">合作机构</a></li>
+                            <li><a href="#">服务协议</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-2 col-md-2 ">
+                        <ul class="list-unstyled">
+                            <li><a href="#">风险防范</a></li>
+                            <li><a href="#">账户安全</a></li>
+                            <li><a href="#">安全保障</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-2 col-md-2 ">
+                        <ul class="list-unstyled">
+                            <li><a href="#">理财产品</a></li>
+                            <li><a href="#">固定期限</a></li>
+                            <li><a href="#">债权/散标</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-2 col-md-2 ">
+                        <ul class="list-unstyled">
+                            <li><a href="#">交易帮助</a></li>
+                            <li><a href="#">购买</a></li>
+                            <li><a href="#">赎回</a></li>
+                            <li><a href="#">提现</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-4 col-md-4 ">
+                        <ul class="list-unstyled">
+                            <li><a href="#">机构服务</a></li>
+                            <li><a href="#">机构中心</a></li>
+                            <li><a href="#">合作联系</a></li>
+
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+           
+        </div>
+        <div id="footer" class="row " >
+            <div class="marginTop10">
+                <ul class="list-inline text-center">
+                    <li><img src="img/b1.png" /></li>
+                    <li><img src="img/b2.png" /></li>
+                    <li><img src="img/b3.png" /></li>
+                    <li><img src="img/b4.png" /></li>
+                </ul>
+            </div>
+            <div><p class=" text-center">北京某互联网金融公司 版权所有 @ 2010-2017</p></div>
+        </div>
+    </div>
+</body>
+</html>
+
+
+<script src="js/vendor/OwlCarousel2-2.2.1/dist/owl.carousel.min.js"></script>
+<script>
+
+    let app = angular.module("body", ['ng']);
+    app.controller("bodyController", ($scope) => {
+
+        $scope.table = [
+            { month: "3", monthKey: "个月", rate: "3.50%", total: "1,880" },
+            { month: "3-6", monthKey: "个月", rate: "3.60%", total: "2,880 " },
+            { month: "6-12", monthKey: "个月", rate: "4.50%", total: "8,880" },
+            { month: "12-24", monthKey: "个月", rate: "5.60%", total: "5,880" },
+            { month: "24", monthKey: "个月以上", rate: "6.50%", total: "91,080" },]
+        $scope.table2 = [
+            { month: "3", monthKey: "个月", monthNotice: "保健消费", rate: "4.90%", total: "18,000",button:"投标" },
+            { month: "5", monthKey: "个月", monthNotice: "资金周转", rate: "5.20%", total: "28,880 ", button: "投标" },
+            { month: "7", monthKey: "个月", monthNotice: "个人消费", rate: "5.50%", total: "38,880", button: "还款中" },
+            { month: "1", monthKey: "个月", monthNotice: "日常生活消费", rate: "4.60%", total: "59,880", button: "还款中" },]
+        $scope.safe = [
+            {
+                name: "安全", values: [
+                    { Record: "国家AAA信用平台" },
+                    { Record: "银行资金托管" },
+                    { Record: "上市公司北京保证" }]
+            },
+            {
+                name: "权威", values: [
+                    { Record: "国家AAA信用平台" },
+                    { Record: "银行资金托管" },
+                    { Record: "上市公司北京保证" }]
+            },
+            {
+                name: "省心", values: [
+                    { Record: "1000元起头" },
+                    { Record: "用户利益保障机制" },
+                    { Record: "保险公司承保" }]
+            },
+
+        ]
+    })
+
+    $(document).ready(function () {
+        $(".owl-carousel").owlCarousel({
+            items: 1,
+            loop: true,
+            autoplay: true,
+            autoplayTimeout: 3000,
+            autoplayHoverPause: true,
+        });
+    });
+
+
+</script>
+

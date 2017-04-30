@@ -1,0 +1,85 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>
+
+    </title>
+    <style>
+        body {
+            margin: auto;
+            margin-top: 15px;
+            width: 500px;
+        }
+
+        div {
+            width: 100px;
+            height: 100px;
+            background-color: chocolate;
+            position: absolute;
+            float: left;
+        }
+
+        #div2 {
+            left: 50px;
+            top: 50px;
+            position: relative;
+            background-color: palevioletred;
+            z-index: 0;
+        }
+
+        #divleft {
+            width: 0px;
+            height: 0px;
+            left: -100px;
+            top: 100px;
+            border-bottom: 50px solid transparent;
+            border-right: 50px solid black;
+            background-color: transparent;
+            position: relative;
+            z-index: 100;
+        }
+        #divlefttop {
+            width: 50px;
+            height: 50px;
+            top:65px;
+            background-color: black;
+        }
+        #divtop {
+            width: 100px;
+            height: 50px;
+            background-color: #00ff00;
+        }
+
+        #divright {
+            width: 0px;
+            height: 0px;
+            left: -100px;
+            border-bottom: 50px solid #00ff00;
+            border-right: 50px solid transparent;
+            background-color: transparent;
+            position: relative;
+            z-index: 100;
+        }
+        #lefttop {
+            width: 0px;
+            height: 0px;
+            left: -150px;
+            border-bottom: 50px solid black;
+            border-right: 50px solid transparent;
+            background-color: transparent;
+            position: relative;
+            z-index: 100;
+        }
+    </style>
+</head>
+
+<body>
+    <div></div>
+    <div id="div2"></div>
+    <div id="divleft"></div>
+    <div id="divlefttop"></div>
+    <div id="lefttop"></div>
+    <div id="divtop"></div>
+    <div id="divright"></div>
+</body>
+</html>

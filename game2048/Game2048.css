@@ -1,0 +1,9 @@
+#d {  
+    width: 1200px;
+    height: 1200px;
+}
+body{
+    padding-top: 400px;
+    background-image: url(../image/huge2.jpg);
+    opacity: .9;
+}

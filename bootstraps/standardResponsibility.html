@@ -1,0 +1,115 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-size: 1rem;
+            font-family: 'Simhei';
+        }
+        
+        .container-fluid,
+        .container::before {
+            content: ' ';
+            display: table;
+        }
+        
+        .container-fluid,
+        .container::after {
+            content: ' ';
+            display: table;
+            clear: both;
+        }
+        /*手机*/
+        @media screen  and (max-width: 999px) {
+            .container {
+                width: 100%;
+                margin: 0 auto;
+            }
+            .left {
+                width: 100%;
+            }
+            .middle {
+                width: 100%;
+            }
+            .right {
+                width: 100%;
+            }
+            .my-img{
+                width: 100%;
+            }
+        }
+        /*平板*/
+        @media screen and (min-width: 1000px) and (max-width: 1599px) {
+            .container {
+                width: 1000px;
+                margin: 0 auto;
+            }
+            .left {
+                float: left;
+                width: 25%;
+            }
+            .middle {
+                float: left;
+                width: 75%;
+            }
+            .right {
+                display: none;
+            }
+            .my-img{
+                width: 25%;
+            }
+        }
+         /*电脑*/
+        @media screen and (min-width: 1600px) and (max-width: 3840px) {
+            .container {
+                width: 1600px;
+                margin: 0 auto;
+            }
+            .left {
+                float: left;
+                width: 20%;
+            }
+            .middle {
+                float: left;
+                width: 60%;
+            }
+            .right {
+                float: left;
+                width: 20%;
+            }
+            .my-img{
+                width: 50%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="left">
+            <p> left</p>
+        </div>
+        <div class="middle">
+            <p> middle</p>
+            <div class="container-fluid">
+                <img class="my-img" src="../image/huge1.jpg" alt="">
+                <img class="my-img" src="../image/huge2.jpg" alt="">
+                <img class="my-img" src="../image/huge3.jpg" alt="">
+                <img class="my-img" src="../image/huge1.jpg" alt="">
+            </div>
+        </div>
+        <div class="right">
+            <p> right</p>
+        </div>
+    </div>
+</body>
+
+</html>
+<script>
+    var p =Object.create()
+</script>

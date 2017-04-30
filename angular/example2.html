@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Title</title>
+    <meta charset="UTF-8">
+    <link href="../bootstraps/dist/css/bootstrap.css" rel="stylesheet" />
+    <script src="https://cdn.bootcss.com/jquery/3.2.0/jquery.min.js"></script>
+    <script src="../bootstraps/dist/js/bootstrap.js"></script>
+    <script src="angular.min.js"></script>
+    <style>
+        .red{
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container" ng-app="product" ng-controller="productController">
+        <div class="navbar navbar-default" role="navigation">
+            <div class="form-group">
+                <input type="text" class="form-control" ng-model="mysearch" placeholder="Search">
+            </div>
+        </div>
+        <table class="table table-bordered">
+            <tr>
+                <td ng-class="{dropup:isidUP===true}" ng-click="order('id')">产品编号 <span class="caret " ng-class="{ red:isidUP===true}"></span></td>
+                <td ng-class="{dropup:isnameUP===true}" ng-click="order('name')">产品名称 <span class="caret"></span></td>
+                <td ng-class="{dropup:ispriceUP===true}" ng-click="order('price')">产品价格 <span class="caret"></span></td>
+            </tr>
+            <tr ng-repeat="(k,v) in productData| filter: {id:mysearch} | orderBy:isnowUP+types">
+                <td>{{v.id}}</td>
+                <td>{{v.name}}</td>
+                <td>{{v.price | currency:'(RMB)'}}</td>
+            </tr>
+        </table>
+
+        <ts-hello>123</ts-hello>
+    </div>
+
+</body>
+
+</html>
+<script>
+ var app=   angular.module('product', []).service(
+        'productData', function () {
+
+            return [{
+                id: 2,
+                name: 'iphone',
+                price: 57400
+
+            }, {
+                id: 5,
+                name: 'window10',
+                price: 54500
+
+            }, {
+                id: 1,
+                name: 'xp',
+                price: 51400
+
+            }, {
+                id: 1,
+                name: 'mac',
+                price: 54060
+
+            },]
+        }
+    )
+        .controller("productController", function ($scope, productData) {
+            $scope.productData = productData;
+
+            $scope.types = "id";
+
+            $scope.isidUP = false;
+            $scope.isnameUP = false;
+            $scope.ispriceUP = false;
+            $scope.isnowUP = 'up';
+
+            $scope.order = function (obj) {
+                if (obj === 'id') {
+                    $scope.types = "id";
+                    $scope.isidUP = !$scope.isidUP;
+                    $scope.isidUP ? $scope.isnowUP = '-' : $scope.isnowUP = '';
+                }
+                if (obj === 'name') {
+                    $scope.types = "name";
+                    $scope.isnameUP = !$scope.isnameUP;
+                    $scope.isnameUP ? $scope.isnowUP = '-' : $scope.isnowUP = '';
+                }
+                if (obj === 'price') {
+                    $scope.types = "price";
+                    $scope.ispriceUP = !$scope.ispriceUP;
+                    $scope.ispriceUP ? $scope.isnowUP = '-' : $scope.isnowUP = '';
+                }
+            }
+        });
+ app.directive('tsHello',function () {
+     return{
+         template: '<h1>hello directive</h1>'
+     }
+ })
+</script>
