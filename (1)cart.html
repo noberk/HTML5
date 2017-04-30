@@ -1,0 +1,133 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <script src="jquery/jquery-3.2.0.min.js"></script>
+    <style>
+        body{
+            font-size:100%
+        }
+        main {
+            margin: auto;
+            width: 75%;
+            
+            background-color: #f6f5f5;
+            border: 1px solid gray;
+        }
+
+        footer {
+            margin: auto;
+            width: 75%;
+            height: 100px;
+            margin-top: 16px;
+        }
+
+        .align {
+            width: 95%;
+            margin: auto;
+        }
+
+        .alignRight {
+            text-align: right;
+        }
+
+        #line {
+            border-bottom: 1px solid gray;
+            margin-top: 15px;
+        }
+
+            #line > a {
+                background-image: url(image/flowers.png);
+                background-position-x: 500px;
+                width: 57px;
+                height: 59px;
+                display: inline-block;
+            }
+
+        .tagLine {
+            margin-top: 15px;
+        }
+
+            .tagLine > a {
+                display: inline-block;
+                height: 20px;
+                background-color: pink;
+                margin-left: 10PX;
+                padding: 5px;
+            }
+
+        button {
+            border: 1px solid #e2e2e2;
+            border-radius: 2px;
+            width: 120px;
+            height: 30px;
+        }
+
+        #pageContainer > a {
+            border: 1px solid #e2e2e2;
+            border-radius: 2px;
+            width: 30px;
+            height: 20px;
+            display: inline-block;
+            color: #0094ff;
+            text-align: center;
+            font-weight:bold;
+        }
+            #pageContainer > a:hover {
+                border: 1px solid #e2e2e2;
+                background-color: #0080dc;
+                border-radius: 2px;
+                width: 30px;
+                height: 20px;
+                display: inline-block;
+                font-weight: bold;
+                color:white;
+                text-align: center;
+            }
+
+         
+    </style>
+</head>
+<body>
+     
+    <main>
+        <div id="line" class="align">
+            <table></table>
+            <a></a><a></a><a></a><a></a><a></a>
+        </div>
+        <p class="align tagLine"> 标  签: <a>比洗衣粉好</a><a>去污能力强</a></p>
+        <p class="align tagLine"> 心  得:   买了几次了,挺好用的,洗的衣服很干净,以后就用它了!</p>
+        <p class="align tagLine"> 购买日期 : 2014-12-01</p>
+        <p class="align tagLine alignRight">
+            <button>有用(3)</button>
+            <button>回复(3)</button>
+        </p>
+        <p class="tagLine"></p>
+    </main>
+    <footer>
+        <p id="pageContainer" class="align alignRight">
+            <a>1</a>
+            <a>2</a>
+            <a>3</a>
+            <a>4</a>
+            <a>5</a>
+            <a>6</a>
+        </p>
+    </footer>
+
+    
+</body>
+</html>
+<script>
+    var createImage = () => {
+        $("#line").append(" <a style='margin-left:-10px;'></a><a style='margin-left:-10px;'></a><a style='margin-left:-10px;'></a><a style='margin-left:-10px;'></a>");
+    }
+
+    $(document).ready(
+        () => {
+            $("#line").click(() => {
+                setInterval(createImage, 100);
+            })
+        }
+    );
+</script>
