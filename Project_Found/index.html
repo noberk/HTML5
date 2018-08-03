@@ -5,14 +5,16 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>理财宝</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="js/vendor/OwlCarousel2-2.2.1/dist/assets/owl.carousel.min.css" rel="stylesheet" />
-    <link href="js/vendor/OwlCarousel2-2.2.1/dist/assets/owl.theme.default.min.css" rel="stylesheet" />
-    <script src="js/vendor/OwlCarousel2-2.2.1/docs/assets/vendors/jquery.min.js"></script>
-    <link href="css/bootstrap.css" rel="stylesheet" />
-    <script src="js/bootstrap.js"></script>
-    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico" media="screen" />
-    <link href="css/index.css" rel="stylesheet" />
-    <script src="js/angular.min.js"></script>
+    <!-- <link href="./src/js/vendor/OwlCarousel2-2.2.1/dist/assets/owl.carousel.min.css" rel="stylesheet" />
+    <link href="./src/js/vendor/OwlCarousel2-2.2.1/dist/assets/owl.theme.default.min.css" rel="stylesheet" />
+    <link href="./src/css/bootstrap.css" rel="stylesheet" />
+    <link href="./src/css/index.css" rel="stylesheet" />
+    <script src="./src/js/vendor/OwlCarousel2-2.2.1/docs/assets/vendors/jquery.min.js"></script>
+    <script src="./src/js/bootstrap.js"></script>
+    <script src="./src/js/angular.min.js"></script>
+
+    <link rel="shortcut icon" type="image/x-icon" href="./src/img/favicon.ico" media="screen" /> -->
+    <script src="./src/ts/main.js"></script>
 </head>
 
 <body>
@@ -32,7 +34,7 @@
 
         <div id="header2" class="row overFlow">
             <div class="col-lg-5">
-                <img src="img/logo@2x.png" />
+                <img src="./src/img/logo@2x.png" />
             </div>
             <div class="col-lg-7">
                 <ul class="list-inline right">
@@ -58,24 +60,24 @@
             <div class="owl-carousel owl-theme">
                 <div class="item">
                     <picture>
-                        <source srcset="img/ad001-l.png" media="(min-width:1600px)" />
-                        <source srcset="img/ad001-m.png" media="(min-width:800px)" />
-                        <img src="img/ad001.png" alt="Alternate Text" />
+                        <source srcset="./src/img/ad001-l.png" media="(min-width:1600px)" />
+                        <source srcset="./src/img/ad001-m.png" media="(min-width:800px)" />
+                        <img src="./src/img/ad001.png" alt="Alternate Text" />
                     </picture>
                 </div>
                 <div class="item">
                     <picture>
-                        <source srcset="img/ad002-l.png" media="(min-width:1600px)" />
-                        <source srcset="img/ad002-m.png" media="(min-width:800px)" />
-                        <img src="img/ad002.png" alt="Alternate Text" />
+                        <source srcset="./src/img/ad002-l.png" media="(min-width:1600px)" />
+                        <source srcset="./src/img/ad002-m.png" media="(min-width:800px)" />
+                        <img src="./src/img/ad002.png" alt="Alternate Text" />
                     </picture>
                 </div>
                 <div class="item">
                     <picture>
-                        <source srcset="img/ad003-l.png" media="(min-width:1600px)" />
-                        <source srcset="img/ad003-l.png" media="(min-width:1600px)" />
-                        <source srcset="img/ad003-m.png" media="(min-width:800px)" />
-                        <img src="img/ad003.png" alt="Alternate Text" />
+                        <source srcset="./src/img/ad003-l.png" media="(min-width:1600px)" />
+                        <source srcset="./src/img/ad003-l.png" media="(min-width:1600px)" />
+                        <source srcset="./src/img/ad003-m.png" media="(min-width:800px)" />
+                        <img src="./src/img/ad003.png" alt="Alternate Text" />
                     </picture>
                 </div>
 
@@ -185,7 +187,7 @@
 
         <div id="contact" class="row grayBorder backgroundWhite">
             <div class="col-lg-2 col-md-3 ">
-                <img src="img/logo@1x.png" id="footerlicaiIcon" alt="Alternate Text" />
+                <img src="./src/img/logo@1x.png" id="footerlicaiIcon" alt="Alternate Text" />
             </div>
             <div class="col-lg-10 col-md-9" >
                 <div class="row">
@@ -236,10 +238,10 @@
         <div id="footer" class="row " >
             <div class="marginTop10">
                 <ul class="list-inline text-center">
-                    <li><img src="img/b1.png" /></li>
-                    <li><img src="img/b2.png" /></li>
-                    <li><img src="img/b3.png" /></li>
-                    <li><img src="img/b4.png" /></li>
+                    <li><img src="./src/img/b1.png" /></li>
+                    <li><img src="./src/img/b2.png" /></li>
+                    <li><img src="./src/img/b3.png" /></li>
+                    <li><img src="./src/img/b4.png" /></li>
                 </ul>
             </div>
             <div><p class=" text-center">北京某互联网金融公司 版权所有 @ 2010-2017</p></div>
@@ -249,7 +251,7 @@
 </html>
 
 
-<script src="js/vendor/OwlCarousel2-2.2.1/dist/owl.carousel.min.js"></script>
+<script src="./src/js/vendor/OwlCarousel2-2.2.1/dist/owl.carousel.min.js"></script>
 <script>
 
     let app = angular.module("body", ['ng']);
@@ -289,15 +291,7 @@
         ]
     })
 
-    $(document).ready(function () {
-        $(".owl-carousel").owlCarousel({
-            items: 1,
-            loop: true,
-            autoplay: true,
-            autoplayTimeout: 3000,
-            autoplayHoverPause: true,
-        });
-    });
+  
 
 
 </script>
