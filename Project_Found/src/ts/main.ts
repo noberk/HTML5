@@ -1,5 +1,8 @@
 /// <reference path="../@types/jquery/index.d.ts" />
-
+interface ISafe {
+    name: string,
+    values: { Record: string }[]
+}
 interface HeaderContent {
     files: string[];
     priority: { firstLoad: string, thenLoad: string[] }
@@ -74,6 +77,12 @@ function setElementURL(filePath: any) {
 
     return element;
 }
+const fetchUrl = {
+    invest: 'src/assets/Invest.json',
+    preservationInvest: 'src/assets/preservationInvest.json',
+    safe: 'src/assets/safe.json'
+}
+
 
 @Component({
     files: [
@@ -84,15 +93,51 @@ function setElementURL(filePath: any) {
     ],
     priority: { firstLoad: './src/js/jquery.min.js', thenLoad: ['./src/js/bootstrap.min.js'] }
 })
+
 class Main {
-    constructor() {
-
+    async safe() {
+        let response = await fetch(fetchUrl.safe);
+        let data = await response.json() as ISafe[];
+        var tags = data.map(d => {
+            return `
+            <div class="col-lg-4" name="safeblock>
+            <span class="disInlineBlock" name="safe">${d.name}</span>
+            <div class="disInlineBlock" name="safeArtice">
+                    ${d.values.map(val => {
+                    return `<p>${val.Record}</p>`
+                })}
+            </div>
+            </div>
+            `.trim()
+        })
+        tags.forEach(row => $("#safe").append(row.replace(/,/g, '', )))
     }
+    init() {
 
+        $(() => {
+            this.safe()
+        })
+    }
 }
-
 
 
 
 var main = new Main();
 
+var shotdown = setTimeout(() => {
+    try {
+        if ($) {
+            clearInterval(shotdown);
+            main.init();
+        }
+    } catch (error) {
+        console.log("jquery is loading");
+    }
+}, 100)
+
+
+
+window.onmousemove = (mouse) => {
+      console.log(`${window.innerWidth} ,${window.innerHeight}`);
+      
+}

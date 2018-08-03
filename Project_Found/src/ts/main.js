@@ -1,34 +1,34 @@
 "use strict";
-/// <reference path="../@types/jquery/index.d.ts" />
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+/// <reference path="../@types/jquery/index.d.ts" />
 function Component(content) {
-    return function (target) {
+    return (target) => {
         var head = document.getElementsByTagName("head")[0];
-        var firstLoadElement = setElementURL(content.priority.firstLoad);
+        let firstLoadElement = setElementURL(content.priority.firstLoad);
         if (firstLoadElement != null) {
-            var scriptElement_1 = firstLoadElement;
-            head.appendChild(scriptElement_1);
-            scriptElement_1.onload = function () {
-                console.log(scriptElement_1.src + " was loaded");
-                content.priority.thenLoad.forEach(function (filePath) {
-                    var element = setElementURL(filePath);
+            let scriptElement = firstLoadElement;
+            head.appendChild(scriptElement);
+            scriptElement.onload = () => {
+                console.log(`${scriptElement.src} was loaded`);
+                content.priority.thenLoad.forEach(filePath => {
+                    let element = setElementURL(filePath);
                     if (element) {
-                        console.log(filePath + " was loaded");
+                        console.log(`${filePath} was loaded`);
                         head.appendChild(element);
                     }
                 });
             };
         }
         if (head) {
-            content.files.forEach(function (filePath) {
-                var element = setElementURL(filePath);
+            content.files.forEach((filePath) => {
+                let element = setElementURL(filePath);
                 if (element) {
-                    console.log(filePath + " was loaded");
+                    console.log(`${filePath} was loaded`);
                     head.appendChild(element);
                 }
             });
@@ -66,20 +66,58 @@ function setElementURL(filePath) {
     }
     return element;
 }
-var Main = /** @class */ (function () {
-    function Main() {
+const fetchUrl = {
+    invest: 'src/assets/Invest.json',
+    preservationInvest: 'src/assets/preservationInvest.json',
+    safe: 'src/assets/safe.json'
+};
+let Main = class Main {
+    async safe() {
+        let response = await fetch(fetchUrl.safe);
+        let data = await response.json();
+        var tags = data.map(d => {
+            return `
+            <div class="col-lg-4" name="safeblock>
+            <span class="disInlineBlock" name="safe">${d.name}</span>
+            <div class="disInlineBlock" name="safeArtice">
+                    ${d.values.map(val => {
+                return `<p>${val.Record}</p>`;
+            })}
+            </div>
+            </div>
+            `.trim();
+        });
+        tags.forEach(row => $("#safe").append(row.replace(/,/g, '')));
     }
-    Main = __decorate([
-        Component({
-            files: [
-                './src/css/bootstrap.css',
-                './src/css/index.css',
-                './src/js/less.min.js',
-                './src/img/favicon.ico'
-            ],
-            priority: { firstLoad: './src/js/jquery.min.js', thenLoad: ['./src/js/bootstrap.min.js'] }
-        })
-    ], Main);
-    return Main;
-}());
+    init() {
+        $(() => {
+            this.safe();
+        });
+    }
+};
+Main = __decorate([
+    Component({
+        files: [
+            './src/css/bootstrap.css',
+            './src/css/index.css',
+            './src/js/less.min.js',
+            './src/img/favicon.ico'
+        ],
+        priority: { firstLoad: './src/js/jquery.min.js', thenLoad: ['./src/js/bootstrap.min.js'] }
+    })
+], Main);
 var main = new Main();
+var shotdown = setTimeout(() => {
+    try {
+        if ($) {
+            clearInterval(shotdown);
+            main.init();
+        }
+    }
+    catch (error) {
+        console.log("jquery is loading");
+    }
+}, 100);
+window.onmousemove = (mouse) => {
+    console.log(`${window.innerWidth} ,${window.innerHeight}`);
+};
