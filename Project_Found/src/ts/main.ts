@@ -3,11 +3,25 @@ interface ISafe {
     name: string,
     values: { Record: string }[]
 }
-interface HeaderContent {
+interface IInvest {
+    month?: string;
+    monthKey?: string;
+    rate?: string,
+    total?: string
+}
+interface IPreservation extends IInvest { }
+interface IHighRisk extends IInvest {
+    monthNotice?: string;
+    button?: string
+}
+interface String {
+    clear: () => string
+}
+interface HeadContent {
     files: string[];
     priority: { firstLoad: string, thenLoad: string[] }
 }
-function Component(content: HeaderContent) {
+function Component(content: HeadContent) {
     return (target: any) => {
 
         var head = document.getElementsByTagName("head")[0]
@@ -42,7 +56,6 @@ function Component(content: HeaderContent) {
         }
     }
 }
-
 function doElement<K extends keyof HTMLElementTagNameMap>(name: K) {
     return document.createElement(name);
 }
@@ -77,8 +90,26 @@ function setElementURL(filePath: any) {
 
     return element;
 }
+async function insert<T>(id: string, url: string, tagArray: (data: T) => string[]) {
+    let data = await take<T>(url);
+    var tags = tagArray(data);
+    tags.forEach(row => $(`#${id}`).append(row.clear().trim()))
+}
+
+String.prototype.clear = function () {
+    console.log(this);
+    return this.replace(/,/g, '')
+}
+
+
+async function take<T>(url: string) {
+    let response = await fetch(url);
+    let data = await response.json() as T;
+    return data;
+}
+
 const fetchUrl = {
-    invest: 'src/assets/Invest.json',
+    highRiskInvest: 'src/assets/Invest.json',
     preservationInvest: 'src/assets/preservationInvest.json',
     safe: 'src/assets/safe.json'
 }
@@ -94,28 +125,106 @@ const fetchUrl = {
     priority: { firstLoad: './src/js/jquery.min.js', thenLoad: ['./src/js/bootstrap.min.js'] }
 })
 
+
 class Main {
     async safe() {
-        let response = await fetch(fetchUrl.safe);
-        let data = await response.json() as ISafe[];
-        var tags = data.map(d => {
-            return `
+        insert<ISafe[]>("safe", fetchUrl.safe, data => {
+            return data.map(d => {
+                return `
             <div class="col-lg-4" name="safeblock>
             <span class="disInlineBlock" name="safe">${d.name}</span>
             <div class="disInlineBlock" name="safeArtice">
                     ${d.values.map(val => {
-                    return `<p>${val.Record}</p>`
-                })}
+                        return `<p>${val.Record}</p>`
+                    })}
             </div>
             </div>
-            `.trim()
+            `
+            })
         })
-        tags.forEach(row => $("#safe").append(row.replace(/,/g, '', )))
     }
-    init() {
 
+    async preservationInvest() {
+
+        insert<IPreservation[]>("preservationInvest", fetchUrl.preservationInvest, data => {
+            return data.map(d => {
+                return `
+            <tr ng-repeat="(key,val) in table">
+                            <td class="text-center tdMonth">
+                                <span class="month">
+                                   ${d.month}
+                                </span>
+                                <span>
+                                    ${d.monthKey}
+                                </span>
+                            </td>
+                            <td>
+
+                                <div class="text-center bold moneyUnit">约定年化收益率:</div>
+                                <div class="text-center">
+                                    <span span class="money">${d.rate}</span>
+                                    <span class="moneyUnit">起</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="text-center bold moneyUnit">总成交金额:</div>
+                                <div class="text-center">
+                                    <span class="money">${d.total}</span>
+                                    <span class="moneyUnit">万元</span>
+                                </div>
+
+                            </td>
+                            <td class="paddingTop20"><button class="btn btn btn-warning orangeBtn center-block">购买</button></td>
+            </tr>
+               `
+            })
+        })
+
+    }
+    async highRiskInvest() {
+        insert<IHighRisk[]>("highRiskInvest", fetchUrl.highRiskInvest, data => {
+            return data.map(d => {
+                return `
+                     <tr ng-repeat="(key,val) in table2">
+                            <td class="text-center tdMonth">
+                                <div>
+                                    <span class="month">
+                                      ${d.month}
+                                    </span>
+                                    <span>
+                                        ${d.monthKey}
+                                    </span>
+                                </div>
+                                <div>
+                                    <span>${d.monthNotice}</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="text-center bold moneyUnit">约定年化收益率:</div>
+                                <div class="text-center">
+                                    <span span class="money">${d.rate}</span>
+                                    <span class="moneyUnit">起</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="text-center bold moneyUnit">金额:</div>
+                                <div class="text-center">
+                                    <span class="money">${d.total}</span>
+                                    <span class="moneyUnit">元</span>
+                                </div>
+                            </td>
+                            <td class="paddingTop20"><button class="btn btn btn-warning orangeBtn center-block ">${d.button}</button></td>
+                        </tr>
+               `
+            })
+        })
+    }
+
+    init() {
         $(() => {
             this.safe()
+            this.preservationInvest()
+            this.highRiskInvest()
         })
     }
 }
@@ -124,10 +233,10 @@ class Main {
 
 var main = new Main();
 
-var shotdown = setTimeout(() => {
+var shutdown = setTimeout(() => {
     try {
         if ($) {
-            clearInterval(shotdown);
+            clearInterval(shutdown);
             main.init();
         }
     } catch (error) {
@@ -137,7 +246,7 @@ var shotdown = setTimeout(() => {
 
 
 
-window.onmousemove = mouse => {
-      console.log(`${window.innerWidth} ,${window.innerHeight}`);
-      
+window.onresize = mouse => {
+    // console.log(`${window.innerWidth} ,${window.innerHeight}`);
+      console.log(`${window.innerWidth} `);
 }

@@ -66,32 +66,120 @@ function setElementURL(filePath) {
     }
     return element;
 }
+async function insert(id, url, tagArray) {
+    let data = await take(url);
+    var tags = tagArray(data);
+    tags.forEach(row => $(`#${id}`).append(row.clear().trim()));
+}
+String.prototype.clear = function () {
+    console.log(this);
+    return this.replace(/,/g, '');
+};
+async function take(url) {
+    let response = await fetch(url);
+    let data = await response.json();
+    return data;
+}
 const fetchUrl = {
-    invest: 'src/assets/Invest.json',
+    highRiskInvest: 'src/assets/Invest.json',
     preservationInvest: 'src/assets/preservationInvest.json',
     safe: 'src/assets/safe.json'
 };
 let Main = class Main {
     async safe() {
-        let response = await fetch(fetchUrl.safe);
-        let data = await response.json();
-        var tags = data.map(d => {
-            return `
+        insert("safe", fetchUrl.safe, data => {
+            return data.map(d => {
+                return `
             <div class="col-lg-4" name="safeblock>
             <span class="disInlineBlock" name="safe">${d.name}</span>
             <div class="disInlineBlock" name="safeArtice">
                     ${d.values.map(val => {
-                return `<p>${val.Record}</p>`;
-            })}
+                    return `<p>${val.Record}</p>`;
+                })}
             </div>
             </div>
-            `.trim();
+            `;
+            });
         });
-        tags.forEach(row => $("#safe").append(row.replace(/,/g, '')));
+    }
+    async preservationInvest() {
+        insert("preservationInvest", fetchUrl.preservationInvest, data => {
+            return data.map(d => {
+                return `
+            <tr ng-repeat="(key,val) in table">
+                            <td class="text-center tdMonth">
+                                <span class="month">
+                                   ${d.month}
+                                </span>
+                                <span>
+                                    ${d.monthKey}
+                                </span>
+                            </td>
+                            <td>
+
+                                <div class="text-center bold moneyUnit">约定年化收益率:</div>
+                                <div class="text-center">
+                                    <span span class="money">${d.rate}</span>
+                                    <span class="moneyUnit">起</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="text-center bold moneyUnit">总成交金额:</div>
+                                <div class="text-center">
+                                    <span class="money">${d.total}</span>
+                                    <span class="moneyUnit">万元</span>
+                                </div>
+
+                            </td>
+                            <td class="paddingTop20"><button class="btn btn btn-warning orangeBtn center-block">购买</button></td>
+            </tr>
+               `;
+            });
+        });
+    }
+    async highRiskInvest() {
+        insert("highRiskInvest", fetchUrl.highRiskInvest, data => {
+            return data.map(d => {
+                return `
+                     <tr ng-repeat="(key,val) in table2">
+                            <td class="text-center tdMonth">
+                                <div>
+                                    <span class="month">
+                                      ${d.month}
+                                    </span>
+                                    <span>
+                                        ${d.monthKey}
+                                    </span>
+                                </div>
+                                <div>
+                                    <span>${d.monthNotice}</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="text-center bold moneyUnit">约定年化收益率:</div>
+                                <div class="text-center">
+                                    <span span class="money">${d.rate}</span>
+                                    <span class="moneyUnit">起</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="text-center bold moneyUnit">金额:</div>
+                                <div class="text-center">
+                                    <span class="money">${d.total}</span>
+                                    <span class="moneyUnit">元</span>
+                                </div>
+                            </td>
+                            <td class="paddingTop20"><button class="btn btn btn-warning orangeBtn center-block ">${d.button}</button></td>
+                        </tr>
+               `;
+            });
+        });
     }
     init() {
         $(() => {
             this.safe();
+            this.preservationInvest();
+            this.highRiskInvest();
         });
     }
 };
@@ -107,10 +195,10 @@ Main = __decorate([
     })
 ], Main);
 var main = new Main();
-var shotdown = setTimeout(() => {
+var shutdown = setTimeout(() => {
     try {
         if ($) {
-            clearInterval(shotdown);
+            clearInterval(shutdown);
             main.init();
         }
     }
@@ -118,6 +206,7 @@ var shotdown = setTimeout(() => {
         console.log("jquery is loading");
     }
 }, 100);
-window.onmousemove = mouse => {
-    console.log(`${window.innerWidth} ,${window.innerHeight}`);
+window.onresize = mouse => {
+    // console.log(`${window.innerWidth} ,${window.innerHeight}`);
+    console.log(`${window.innerWidth} `);
 };
