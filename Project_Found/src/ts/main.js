@@ -118,6 +118,6 @@ var shotdown = setTimeout(() => {
         console.log("jquery is loading");
     }
 }, 100);
-window.onmousemove = (mouse) => {
+window.onmousemove = mouse => {
     console.log(`${window.innerWidth} ,${window.innerHeight}`);
 };

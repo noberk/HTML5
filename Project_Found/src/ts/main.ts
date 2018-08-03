@@ -137,7 +137,7 @@ var shotdown = setTimeout(() => {
 
 
 
-window.onmousemove = (mouse) => {
+window.onmousemove = mouse => {
       console.log(`${window.innerWidth} ,${window.innerHeight}`);
       
 }
