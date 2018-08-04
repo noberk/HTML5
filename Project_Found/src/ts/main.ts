@@ -1,4 +1,3 @@
-/// <reference path="../@types/jquery/index.d.ts" />
 interface ISafe {
     name: string,
     values: { Record: string }[]
@@ -9,14 +8,13 @@ interface IInvest {
     rate?: string,
     total?: string
 }
+
 interface IPreservation extends IInvest { }
 interface IHighRisk extends IInvest {
     monthNotice?: string;
     button?: string
 }
-interface String {
-    clear: () => string
-}
+
 interface HeadContent {
     files: string[];
     priority: { firstLoad: string, thenLoad: string[] }
@@ -96,6 +94,9 @@ async function insert<T>(id: string, url: string, tagArray: (data: T) => string[
     tags.forEach(row => $(`#${id}`).append(row.clear().trim()))
 }
 
+interface String {
+    clear: () => string
+}
 String.prototype.clear = function () {
     console.log(this);
     return this.replace(/,/g, '')
