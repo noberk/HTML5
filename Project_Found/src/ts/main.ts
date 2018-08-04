@@ -20,7 +20,7 @@ interface HeadContent {
     priority: { firstLoad: string, thenLoad: string[] }
 }
 function Component(content: HeadContent) {
-    return (target: any) => {
+    return (target: unknown) => {
 
         var head = document.getElementsByTagName("head")[0]
 
